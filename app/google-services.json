@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "140302994574",
+    "firebase_url": "https://openfoodfact-fdbc9-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "openfoodfact-fdbc9",
+    "storage_bucket": "openfoodfact-fdbc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140302994574:android:72d8041e81f46689c88ddf",
+        "android_client_info": {
+          "package_name": "com.dmytro.lutsyk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140302994574-f208d54mvg8jn92o9nb3n3ok4knloe4g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dmytro.lutsyk",
+            "certificate_hash": "33b93def281446e0ef64de1a154036449c53bf38"
+          }
+        },
+        {
+          "client_id": "140302994574-55vtinh4cm3ksl4fqgq0esjojmnola18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvdedK9URwKO53N29-QrS9K_zE4Hzon7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140302994574-55vtinh4cm3ksl4fqgq0esjojmnola18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140302994574:android:9005fe4b236bda13c88ddf",
+        "android_client_info": {
+          "package_name": "com.example.openfoodfactesgi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140302994574-55vtinh4cm3ksl4fqgq0esjojmnola18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvdedK9URwKO53N29-QrS9K_zE4Hzon7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140302994574-55vtinh4cm3ksl4fqgq0esjojmnola18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
