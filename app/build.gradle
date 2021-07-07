@@ -56,5 +56,9 @@ dependencies {
 
     //Barcode and QR Scanner
     //implementation 'com.google.zxing:core:3.3.0'
-    implementation 'com.journeyapps:zxing-android-embedded:4.2.0'
+    //implementation 'com.journeyapps:zxing-android-embedded:4.2.0'
+    implementation 'com.google.mlkit:barcode-scanning:16.2.0'
+    implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0'
+    implementation 'com.google.android.gms:play-services-vision:19.0.0'
+
 }

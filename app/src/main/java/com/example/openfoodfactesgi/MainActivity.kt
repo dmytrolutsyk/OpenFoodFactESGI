@@ -10,8 +10,12 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.google.mlkit.vision.barcode.BarcodeScannerOptions
+import com.google.mlkit.vision.common.InputImage
 
-import com.google.zxing.integration.android.IntentIntegrator
+
+//import com.google.zxing.integration.android.IntentIntegrator
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,13 +23,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        scanButton = findViewById(R.id.btn_scan)
+        /*scanButton = findViewById(R.id.btn_scan)
         scanButton.setOnClickListener{
             val scanner = IntentIntegrator(this)
             scanner.setDesiredBarcodeFormats(IntentIntegrator.CODE_128)
             scanner.setBeepEnabled(false)
             scanner.initiateScan()
-        }
+        }*/
         handleIntent()
     }
 
@@ -53,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener(this) { e -> Log.w("MainActivity", "getDynamicLink:onFailure", e) }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
             if (result != null) {
@@ -67,5 +71,5 @@ class MainActivity : AppCompatActivity() {
                     super.onActivityResult(requestCode, resultCode, data)
                 }
             }
-    }
+    }*/
 }
