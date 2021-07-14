@@ -6,6 +6,8 @@ import androidx.navigation.NavDirections
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.openfoodfactesgi.models.ProductDTO
+import com.example.openfoodfactesgi.models.ProductMapper
 import com.example.openfoodfactesgi.services.NetworkProviderOppAPI
 import com.example.openfoodfactesgi.services.OppAPI
 import com.google.gson.JsonObject
