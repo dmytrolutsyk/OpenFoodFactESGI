@@ -10,6 +10,8 @@ import com.example.openfoodfactesgi.models.ProductDTO
 import com.example.openfoodfactesgi.models.ProductMapper
 import com.example.openfoodfactesgi.services.NetworkProviderOppAPI
 import com.example.openfoodfactesgi.services.OppAPI
+import com.example.openfoodfactesgi.services.getProduct
+import com.example.openfoodfactesgi.services.getProductResult
 import com.google.gson.JsonObject
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -41,12 +43,20 @@ class ScanBarcodeViewModel : ViewModel() {
             val product = NetworkProviderOppAPI.buildService(OppAPI::class.java)
             val call = product.getProduct(barcode)
 
-            call.enqueue(object : Callback<JsonObject?> {
-                override fun onResponse(call: Call<JsonObject?>, response: Response<JsonObject?>) {
+            call.enqueue(object : Callback<getProductResult> {
+                override fun onResponse(
+                    call: Call<getProductResult>,
+                    response: Response<getProductResult>
+                ) {
+
                     Log.d("apiResponse", response.body().toString())
+                    //val product = ProductMapper.map(response.body())
+                    Log.d("apiResponse", product.toString())
+                    Log.d("testCodeBar", barcode)
+
                 }
 
-                override fun onFailure(call: Call<JsonObject?>, t: Throwable) {
+                override fun onFailure(call: Call<getProductResult>, t: Throwable) {
                     Log.d("LOGIN", "onFailure: $t")
                 }
             }

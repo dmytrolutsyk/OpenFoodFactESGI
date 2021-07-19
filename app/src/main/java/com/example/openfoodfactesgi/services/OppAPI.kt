@@ -10,7 +10,9 @@ interface OppAPI {
 
     @GET("product/{codeBar}.json")
     @Headers("Content-Type: application/json")
-    fun getProduct(@Path("codeBar") codeBar: String?): Call<JsonObject?>
-
+    fun getProduct(@Path("codeBar") codeBar: String?): Call<getProductResult>
+    //fun getProduct(@Path("codeBar") codeBar: String?): Call<ProductDTO?>
 }
 
+data class getProduct(val id: String, val productName: String)
+data class getProductResult(val error: String, val product: Product)
