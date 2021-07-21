@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/caracteriticsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Caractéristiques du produit"
+        style="@style/FiamUI.Text.Title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Nom du produit: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Nom du produit" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="image: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Nutriscore "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Nutriscore" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Marques: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Marques" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Quantité: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="quantité nombre" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Conditionnement: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="conditionnement" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Catégories: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Catégories" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Lieux de fabrication ou de transformation: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Lieux de fabrication ou de transformation" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Magasins: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Magasins" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Pays de vente: "
+        android:layout_constraintTop_toBottomOf="@+id/caracteriticsTitle"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Pays de vente" />
+
+</FrameLayout>

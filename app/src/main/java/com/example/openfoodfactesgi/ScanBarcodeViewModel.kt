@@ -44,6 +44,7 @@ class ScanBarcodeViewModel : ViewModel() {
                     Log.d("apiResponse", response.body().toString())
                     var resDTO = response.body()
                     var productRes = ProductMapper.mapProductFromResponse(resDTO)
+                    Log.d("apiResponse", productRes.toString())
                 }
 
                 override fun onFailure(call: Call<ProductResponseDTO?>, t: Throwable) {

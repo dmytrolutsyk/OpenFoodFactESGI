@@ -13,32 +13,32 @@ data class ProductResponseDTO(
 
 data class ProductDTO (
     @SerializedName("_id")
-    val id: String,
+    val id: String?,
 
     @SerializedName("product_name")
-    val productName: String,
+    val productName: String?,
 
     @SerializedName("product_quantity")
-    val productQuantity: Long,
+    val productQuantity: Long?,
 
     @SerializedName("brand_owner")
-    val brandOwner: String,
+    val brandOwner: String?,
 
-    val categories: String,
-    val labels: String,
-    val countries: String,
-    val stores: String,
+    val categories: String?,
+    val labels: String?,
+    val countries: String?,
+    val stores: String?,
 
     @SerializedName("manufacturing_places")
-    val manufacturingPlaces: String,
+    val manufacturingPlaces: String?,
 
-    @SerializedName("ingredients_debug")
-    val ingredientsDebug: List<String?>,
+    //@SerializedName("ingredients_debug")
+    //val ingredientsDebug: List<String?>?,
 
     @SerializedName("image_thumb_url")
-    val imageThumbURL: String,
+    val imageThumbURL: String?,
 
     @SerializedName("nutriscore_grade")
-    val nutriscoreGrade: String,
+    val nutriscoreGrade: String?,
 )
 
