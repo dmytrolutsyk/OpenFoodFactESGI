@@ -15,7 +15,7 @@
         android:layout_marginRight="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login"
+        android:id="@+id/loginEDT"
         android:hint="@string/username" />
 
     <EditText
@@ -23,7 +23,7 @@
         android:layout_marginRight="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
+        android:id="@+id/passwordEDT"
         android:hint="@string/password"/>
 
 
@@ -38,10 +38,10 @@
     <Button
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:id="@+id/connection_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#536DFE"
+        android:id="@+id/loginBTN"
         android:text="Connexion" />
     <Button
         android:layout_marginLeft="25dp"
