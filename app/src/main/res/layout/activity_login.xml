@@ -15,6 +15,7 @@
         android:layout_marginRight="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/loginEDT"
         android:hint="@string/username" />
 
     <EditText
@@ -22,16 +23,35 @@
         android:layout_marginRight="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/passwordEDT"
         android:hint="@string/password"/>
 
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:id="@+id/password_confirm"
+        android:hint="@string/confirmez_votre_mot_de_pass"
+        android:visibility="gone" />
     <Button
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#536DFE"
-
+        android:id="@+id/loginBTN"
         android:text="Connexion" />
+    <Button
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:id="@+id/signup_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#536DFE"
+        android:text="Valider"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_marginLeft="25dp"
@@ -45,11 +65,13 @@
             android:layout_height="wrap_content"
             android:text="@string/forget_password_btn"
             android:backgroundTint="@color/white"
+            android:id="@+id/forgot_password_button"
             android:textColor="@color/black"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/swich_signup_button"
             android:text="@string/create_account_btn"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"

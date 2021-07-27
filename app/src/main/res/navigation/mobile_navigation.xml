@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright (C) 2018 The Android Open Source Project
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,10 +12,30 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/scan_destination">
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.openfoodfactesgi.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_success_list"
+        android:name="com.example.openfoodfactesgi.success.SuccessListFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_success_list" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.openfoodfactesgi.rank.RankFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_list_rank" />
 
     <fragment
         android:id="@+id/scan_destination"
@@ -46,6 +67,7 @@
             android:id="@+id/success_destination_to_scan_destination"
             app:destination="@id/scan_destination" />
     </fragment>
+
 
     <fragment
         android:id="@+id/product_fragment"

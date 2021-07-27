@@ -10,8 +10,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.common.InputImage
 
 
 //import com.google.zxing.integration.android.IntentIntegrator
