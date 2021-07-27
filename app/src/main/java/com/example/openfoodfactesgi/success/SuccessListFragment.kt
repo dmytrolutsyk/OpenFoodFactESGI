@@ -1,7 +1,6 @@
 package com.example.openfoodfactesgi.success
 
 import android.os.Bundle
-import android.provider.SyncStateContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.openfoodfactesgi.R
-import com.example.openfoodfactesgi.model.SuccessModel
+import com.example.openfoodfactesgi.models.SuccessModel
 
 
 class SuccessListFragment : Fragment() {

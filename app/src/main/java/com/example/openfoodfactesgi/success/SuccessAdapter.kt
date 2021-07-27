@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.openfoodfactesgi.R
-import com.example.openfoodfactesgi.model.SuccessModel
+import com.example.openfoodfactesgi.models.SuccessModel
 
 class SuccessAdapter : RecyclerView.Adapter<SuccessAdapter.SucessViewHolder>(){
     var allSucess: MutableList<SuccessModel> = ArrayList<SuccessModel>()

@@ -1,4 +1,4 @@
-package com.example.openfoodfactesgi.model
+package com.example.openfoodfactesgi.models
 
 data class RankModel (
     var id: String,
