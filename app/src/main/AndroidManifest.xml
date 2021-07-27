@@ -10,6 +10,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenFoodFactESGI">
+<<<<<<< HEAD
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+        <activity android:name=".MainActivity">
+=======
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,21 +42,20 @@
         <activity
             android:name=".MainActivity">
 
+>>>>>>> a8ce99cf0f4a587ad7bbc4db0b4f1160c712f114
 
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="openfoodfactesgi.page.link"
-                    />
-
+                    android:scheme="https" />
                 <data
-                    android:scheme="http"
                     android:host="openfoodfactesgi.page.link"
-                    />
+                    android:scheme="http" />
             </intent-filter>
         </activity>
 
