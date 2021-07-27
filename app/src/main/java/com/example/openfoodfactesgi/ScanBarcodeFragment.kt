@@ -4,7 +4,6 @@ import android.Manifest.permission.CAMERA
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,9 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.openfoodfactesgi.models.Product
 import kotlinx.android.synthetic.main.fragment_scan_barcode.*
 import kotlinx.android.synthetic.main.fragment_scan_barcode.view.*
@@ -162,4 +161,20 @@ class ScanBarcodeFragment : Fragment() {
         private val REQUIRED_PERMISSIONS = arrayOf(CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
+}
+
+
+object Singleton {
+    var instance: Singleton? = null
+        get() {
+            if (field == null) {
+                synchronized(Singleton::class.java) {
+                    if (field == null) {
+                        field = Singleton
+                    }
+                }
+            }
+            return field
+        }
+        private set
 }
