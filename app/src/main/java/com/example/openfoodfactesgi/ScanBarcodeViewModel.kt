@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.navigation.fragment.findNavController
+import com.example.openfoodfactesgi.models.Product
 
 class ScanBarcodeViewModel : ViewModel() {
 
@@ -28,7 +30,8 @@ class ScanBarcodeViewModel : ViewModel() {
         _progressState.value = false
     }
 
-    fun searchBarcode(barcode: String) {
+    fun searchBarcode(barcode: String, listener: NetworkListener<Product>) {
+
         _progressState.value = true
         viewModelScope.launch {
             delay(1000)
@@ -45,10 +48,12 @@ class ScanBarcodeViewModel : ViewModel() {
                     var resDTO = response.body()
                     var productRes = ProductMapper.mapProductFromResponse(resDTO)
                     Log.d("apiResponse", productRes.toString())
+                    listener.onSuccess(productRes)
                 }
 
                 override fun onFailure(call: Call<ProductResponseDTO?>, t: Throwable) {
                     Log.d("LOGIN", "onFailure: $t")
+                    listener.onError(500)
                 }
             }
             )
@@ -57,4 +62,9 @@ class ScanBarcodeViewModel : ViewModel() {
     fun doneNavigating() {
         _navigation.value = null
     }
+}
+
+interface NetworkListener<T> {
+    fun onSuccess(data: T)
+    fun onError(code: Int)
 }

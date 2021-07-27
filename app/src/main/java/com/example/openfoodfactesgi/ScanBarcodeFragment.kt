@@ -16,6 +16,8 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.openfoodfactesgi.models.Product
 import kotlinx.android.synthetic.main.fragment_scan_barcode.*
 import kotlinx.android.synthetic.main.fragment_scan_barcode.view.*
 import java.util.concurrent.ExecutorService
@@ -99,7 +101,18 @@ class ScanBarcodeFragment : Fragment() {
                 .also {
                     it.setAnalyzer(cameraExecutor, BarcodeAnalyzer { barcode ->
                         if (processingBarcode.compareAndSet(false, true)) {
-                            searchBarcode(barcode)
+                            scanBarcodeViewModel.searchBarcode(barcode, object : NetworkListener<Product>{
+                                override fun onSuccess(data: Product) {
+                                    findNavController().navigate(R.id.scan_barcode_to_product_info)
+
+                                }
+
+                                override fun onError(code: Int) {
+                                    TODO("Not yet implemented")
+                                }
+
+                            })
+                            findNavController().navigate(R.id.scan_barcode_to_product_info)
                         }
                     })
                 }
@@ -138,10 +151,6 @@ class ScanBarcodeFragment : Fragment() {
                 ).show()
             }
         }
-    }
-
-    private fun searchBarcode(barcode: String) {
-        scanBarcodeViewModel.searchBarcode(barcode)
     }
 
     override fun onDestroy() {
