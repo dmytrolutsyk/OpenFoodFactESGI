@@ -20,9 +20,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ProductFragment : Fragment() {
-    private var productName: String? = null
-    private var quantity: String? = null
-
+    //private var productName: String? = null
+    private var productName: String? = Singleton.productObject?.productName
+    //private var quantity: String? = null
+    private var quantity: Long? = Singleton.productObject?.productQuantity
+    lateinit var productNameText: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,8 +35,10 @@ class ProductFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val productView = inflater!!.inflate(R.layout.fragment_product, container, false)
-        //productView.findViewById<EditText>(R.id.editTextTextPersonName) = "hello"
-        return inflater.inflate(R.layout.fragment_product, container, false)
+        productNameText = productView.findViewById(R.id.productNameDetailFragment)
+        //productNameText.text = productName
+        productNameText?.setText(productName)
+        return productView
     }
 
     companion object {

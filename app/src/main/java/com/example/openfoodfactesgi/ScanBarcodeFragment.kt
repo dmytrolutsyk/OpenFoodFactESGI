@@ -14,9 +14,12 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.openfoodfactesgi.models.Product
+import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_scan_barcode.*
 import kotlinx.android.synthetic.main.fragment_scan_barcode.view.*
 import java.util.concurrent.ExecutorService
@@ -102,8 +105,12 @@ class ScanBarcodeFragment : Fragment() {
                         if (processingBarcode.compareAndSet(false, true)) {
                             scanBarcodeViewModel.searchBarcode(barcode, object : NetworkListener<Product>{
                                 override fun onSuccess(data: Product) {
-                                    findNavController().navigate(R.id.scan_barcode_to_product_info)
-
+                                    Singleton.productObject = data
+                                    val productFragment = ProductFragment()
+                                    val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+                                    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                                    fragmentTransaction.replace(R.id.nav_host_fragment, productFragment)
+                                    fragmentTransaction.commit()
                                 }
 
                                 override fun onError(code: Int) {
@@ -164,17 +171,3 @@ class ScanBarcodeFragment : Fragment() {
 }
 
 
-object Singleton {
-    var instance: Singleton? = null
-        get() {
-            if (field == null) {
-                synchronized(Singleton::class.java) {
-                    if (field == null) {
-                        field = Singleton
-                    }
-                }
-            }
-            return field
-        }
-        private set
-}
