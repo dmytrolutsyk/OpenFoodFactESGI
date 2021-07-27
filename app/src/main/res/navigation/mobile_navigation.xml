@@ -46,6 +46,11 @@
         <action
             android:id="@+id/scan_destination_to_success_destination"
             app:destination="@id/success_destination" />
+
+        <action
+            android:id="@+id/scan_barcode_to_product_info"
+            app:destination="@id/product_fragment" />
+
     </fragment>
 
     <fragment
@@ -62,5 +67,19 @@
             android:id="@+id/success_destination_to_scan_destination"
             app:destination="@id/scan_destination" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/product_fragment"
+        android:name="com.example.openfoodfactesgi.ProductFragment"
+        android:label="ProductFragment"
+        tools:layout="@layout/fragment_product">
+
+        <argument
+            android:name="code"
+            app:argType="string"/>
+
+    </fragment>
+
 
 </navigation>

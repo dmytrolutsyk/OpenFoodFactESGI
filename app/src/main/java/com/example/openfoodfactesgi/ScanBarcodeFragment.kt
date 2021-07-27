@@ -4,7 +4,6 @@ import android.Manifest.permission.CAMERA
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,13 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.openfoodfactesgi.models.Product
+import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_scan_barcode.*
 import kotlinx.android.synthetic.main.fragment_scan_barcode.view.*
 import java.util.concurrent.ExecutorService
@@ -99,7 +103,22 @@ class ScanBarcodeFragment : Fragment() {
                 .also {
                     it.setAnalyzer(cameraExecutor, BarcodeAnalyzer { barcode ->
                         if (processingBarcode.compareAndSet(false, true)) {
-                            searchBarcode(barcode)
+                            scanBarcodeViewModel.searchBarcode(barcode, object : NetworkListener<Product>{
+                                override fun onSuccess(data: Product) {
+                                    Singleton.productObject = data
+                                    val productFragment = ProductFragment()
+                                    val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+                                    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                                    fragmentTransaction.replace(R.id.nav_host_fragment, productFragment)
+                                    fragmentTransaction.commit()
+                                }
+
+                                override fun onError(code: Int) {
+                                    TODO("Not yet implemented")
+                                }
+
+                            })
+                            findNavController().navigate(R.id.scan_barcode_to_product_info)
                         }
                     })
                 }
@@ -140,10 +159,6 @@ class ScanBarcodeFragment : Fragment() {
         }
     }
 
-    private fun searchBarcode(barcode: String) {
-        scanBarcodeViewModel.searchBarcode(barcode)
-    }
-
     override fun onDestroy() {
         cameraExecutor.shutdown()
         super.onDestroy()
@@ -154,3 +169,5 @@ class ScanBarcodeFragment : Fragment() {
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
 }
+
+

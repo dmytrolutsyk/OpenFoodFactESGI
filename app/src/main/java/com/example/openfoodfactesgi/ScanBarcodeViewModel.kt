@@ -6,17 +6,17 @@ import androidx.navigation.NavDirections
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.openfoodfactesgi.models.ProductDTO
 import com.example.openfoodfactesgi.models.ProductMapper
+import com.example.openfoodfactesgi.models.ProductResponseDTO
 import com.example.openfoodfactesgi.services.NetworkProviderOppAPI
 import com.example.openfoodfactesgi.services.OppAPI
-import com.google.gson.JsonObject
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.navigation.fragment.findNavController
+import com.example.openfoodfactesgi.models.Product
 
 class ScanBarcodeViewModel : ViewModel() {
 
@@ -30,7 +30,8 @@ class ScanBarcodeViewModel : ViewModel() {
         _progressState.value = false
     }
 
-    fun searchBarcode(barcode: String) {
+    fun searchBarcode(barcode: String, listener: NetworkListener<Product>) {
+
         _progressState.value = true
         viewModelScope.launch {
             delay(1000)
@@ -41,13 +42,18 @@ class ScanBarcodeViewModel : ViewModel() {
             val product = NetworkProviderOppAPI.buildService(OppAPI::class.java)
             val call = product.getProduct(barcode)
 
-            call.enqueue(object : Callback<JsonObject?> {
-                override fun onResponse(call: Call<JsonObject?>, response: Response<JsonObject?>) {
+            call.enqueue(object : Callback<ProductResponseDTO?> {
+                override fun onResponse(call: Call<ProductResponseDTO?>, response: Response<ProductResponseDTO?>) {
                     Log.d("apiResponse", response.body().toString())
+                    var resDTO = response.body()
+                    var productRes = ProductMapper.mapProductFromResponse(resDTO)
+                    Log.d("apiResponse", productRes.toString())
+                    listener.onSuccess(productRes)
                 }
 
-                override fun onFailure(call: Call<JsonObject?>, t: Throwable) {
+                override fun onFailure(call: Call<ProductResponseDTO?>, t: Throwable) {
                     Log.d("LOGIN", "onFailure: $t")
+                    listener.onError(500)
                 }
             }
             )
@@ -56,4 +62,9 @@ class ScanBarcodeViewModel : ViewModel() {
     fun doneNavigating() {
         _navigation.value = null
     }
+}
+
+interface NetworkListener<T> {
+    fun onSuccess(data: T)
+    fun onError(code: Int)
 }
