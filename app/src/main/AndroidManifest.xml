@@ -41,6 +41,9 @@
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="barcode" />
+        <meta-data
+            android:name="com.google.android.gms.ads.com.example.openfoodfactesgi"
+            android:value="ca-app-pub-9688285921991331~2077033963"/>
 
         <service
             android:name=".MyFirebaseMessagingService"
