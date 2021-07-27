@@ -51,13 +51,6 @@ class ScanBarcodeFragment : Fragment() {
             v.fragment_scan_barcode_progress_bar.visibility = if (it) View.VISIBLE else View.GONE
         })
 
-        scanBarcodeViewModel.navigation.observe(viewLifecycleOwner, { navDirections ->
-            navDirections?.let {
-                findNavController().navigate(navDirections)
-                scanBarcodeViewModel.doneNavigating()
-            }
-        })
-
         return v
     }
 
@@ -108,9 +101,12 @@ class ScanBarcodeFragment : Fragment() {
                                     Singleton.productObject = data
                                     val productFragment = ProductFragment()
                                     val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+
                                     val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                                    fragmentTransaction.replace(R.id.nav_host_fragment, productFragment)
-                                    fragmentTransaction.commit()
+
+
+                                    fragmentTransaction.replace(R.id.activity_scan_barcode_fragment, productFragment)
+                                   // fragmentTransaction.commit()
                                 }
 
                                 override fun onError(code: Int) {
