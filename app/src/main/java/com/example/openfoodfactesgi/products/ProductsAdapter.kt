@@ -1,4 +1,4 @@
-package com.example.openfoodfactesgi.rank
+package com.example.openfoodfactesgi.products
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,30 +7,30 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.openfoodfactesgi.R
-import com.example.openfoodfactesgi.models.RankModel
+import com.example.openfoodfactesgi.models.Product
 
-class RankAdapter : RecyclerView.Adapter<RankAdapter.SucessViewHolder>() {
+class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.SucessViewHolder>() {
 
-    var allRanks: MutableList<RankModel> = ArrayList<RankModel>()
+    var allProducts: MutableList<Product> = ArrayList<Product>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RankAdapter.SucessViewHolder {
+    ): ProductsAdapter.SucessViewHolder {
         val view: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_rank_recycler_view, parent, false)
+            .inflate(R.layout.row_product_recycler_view, parent, false)
         return SucessViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RankAdapter.SucessViewHolder, position: Int) {
-        holder.successTitle.text = allRanks[position].name
-        holder.successDescription.text = allRanks[position].numero
+    override fun onBindViewHolder(holder: ProductsAdapter.SucessViewHolder, position: Int) {
+        holder.successTitle.text = allProducts[position].productName
+        holder.successDescription.text = allProducts[position].nutriscoreGrade
 
         ////Glide.with(weaponViewHolder.itemView).load(weapon.getPictureUrl()).into(weaponViewHolder.pictureImv);
     }
 
     override fun getItemCount(): Int {
-        return allRanks.size
+        return allProducts.size
     }
 
 
@@ -49,9 +49,9 @@ class RankAdapter : RecyclerView.Adapter<RankAdapter.SucessViewHolder>() {
 
         }
     }
-    fun setRanks(rankList: MutableList<RankModel>?) {
-        if (rankList != null) {
-            this.allRanks = rankList
+    fun setProducts(productsList: MutableList<Product>?) {
+        if (productsList != null) {
+            this.allProducts = productsList
             notifyDataSetChanged()
         }
     }

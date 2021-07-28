@@ -16,6 +16,6 @@ class Singleton {
             }
             return instance
         }*/
-    }
+}
 
 

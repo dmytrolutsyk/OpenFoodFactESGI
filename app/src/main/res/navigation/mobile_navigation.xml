@@ -81,5 +81,11 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_all_Product"
+        android:name="com.example.openfoodfactesgi.products.ProductFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_list_product" />
+
 
 </navigation>

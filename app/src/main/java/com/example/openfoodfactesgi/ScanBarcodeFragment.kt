@@ -3,6 +3,7 @@ package com.example.openfoodfactesgi
 import android.Manifest.permission.CAMERA
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,8 @@ import com.example.openfoodfactesgi.models.Product
 import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_scan_barcode.*
 import kotlinx.android.synthetic.main.fragment_scan_barcode.view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
@@ -99,24 +102,26 @@ class ScanBarcodeFragment : Fragment() {
                             scanBarcodeViewModel.searchBarcode(barcode, object : NetworkListener<Product>{
                                 override fun onSuccess(data: Product) {
                                     Singleton.productObject = data
-                                    val productFragment = ProductFragment()
-                                    val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-
-                                    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                                    Log.d("testSing", data.toString())
 
 
-                                    fragmentTransaction.replace(R.id.activity_scan_barcode_fragment, productFragment)
+                                    findNavController().navigate(R.id.scan_barcode_to_product_info)
                                    // fragmentTransaction.commit()
+
+
                                 }
 
                                 override fun onError(code: Int) {
                                     TODO("Not yet implemented")
+
                                 }
 
                             })
-                            findNavController().navigate(R.id.scan_barcode_to_product_info)
+
+
                         }
                     })
+
                 }
 
             // Select back camera
