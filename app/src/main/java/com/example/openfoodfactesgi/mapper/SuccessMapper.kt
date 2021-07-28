@@ -1,5 +1,6 @@
 package com.example.openfoodfactesgi.mapper
 
+import android.util.Log
 import com.example.openfoodfactesgi.dto.DTOSuccess
 import com.example.openfoodfactesgi.models.SuccessModel
 
@@ -18,9 +19,9 @@ class SuccessMapper {
 
         private fun mapsuccessModel(successDTO: DTOSuccess?): SuccessModel {
             return SuccessModel(
+                successDTO?.idSuccess,
                 successDTO?.name,
                 successDTO?.description,
-                successDTO?.idSuccess,
                 successDTO?.image
             )
         }

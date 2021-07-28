@@ -67,6 +67,7 @@ class SuccessListFragment : Fragment() {
             override fun onResponse(call: Call<List<DTOSuccess?>>, response: Response<List<DTOSuccess?>>
             ) {
                 val successListDTO : List<DTOSuccess?>? = response.body()
+                Log.d("SUCCESS", "onResponse: " + response.body())
                 var successListModel: MutableList<SuccessModel> = SuccessMapper.mapsuccessModelList(successListDTO) as MutableList<SuccessModel>
                 Log.d("GETSUCCESS", "onResponse: " + successListModel)
 
