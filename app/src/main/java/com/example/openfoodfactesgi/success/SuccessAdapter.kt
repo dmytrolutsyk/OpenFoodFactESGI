@@ -1,11 +1,15 @@
 package com.example.openfoodfactesgi.success
 
+import android.graphics.BitmapFactory
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.openfoodfactesgi.R
 import com.example.openfoodfactesgi.models.SuccessModel
 
@@ -24,8 +28,19 @@ class SuccessAdapter : RecyclerView.Adapter<SuccessAdapter.SucessViewHolder>(){
     override fun onBindViewHolder(holder: SuccessAdapter.SucessViewHolder, position: Int) {
         holder.successTitle.text = allSucess[position].name
         holder.successDescription.text = allSucess[position].description
+        Log.d("SUCCESS", "onBindViewHolder: "+ allSucess )
 
-        ////Glide.with(weaponViewHolder.itemView).load(weapon.getPictureUrl()).into(weaponViewHolder.pictureImv);
+        val avatar = allSucess[position].image
+        if (avatar != null) {
+            val imageBytes = Base64.decode(avatar, 0)
+            val userAvatar = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+            Glide.with(holder.successImage)
+                .load(userAvatar)
+                .circleCrop()
+                .into(holder.successImage)
+        }
+
     }
 
     override fun getItemCount(): Int {

@@ -1,6 +1,7 @@
 package com.example.openfoodfactesgi.success
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.openfoodfactesgi.R
+import com.example.openfoodfactesgi.dto.DTOSuccess
+import com.example.openfoodfactesgi.mapper.SuccessMapper
 import com.example.openfoodfactesgi.models.SuccessModel
+import com.example.openfoodfactesgi.services.NetworkProviderAPI
+import com.example.openfoodfactesgi.services.SuccessApiService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.math.log
 
 
 class SuccessListFragment : Fragment() {
@@ -33,19 +42,10 @@ class SuccessListFragment : Fragment() {
 
         recyclerViewSuccess = root.findViewById(R.id.success_list_fragment_recycler_view)
         recyclerViewSuccess?.layoutManager = LinearLayoutManager(activity);
-        initRecyclerView();
+        initRecyclerView()
+        getUserSuccess()
 
-        var d =  SuccessModel("0", "succes 1", "description de ouf", "")
-        var de =  SuccessModel("0", "succes 1", "description de ouf", "")
-        var r =  SuccessModel("0", "succes 1", "description de ouf", "")
-        var e =  SuccessModel("0", "succes 1", "description de ouf", "")
-        var allSucess: MutableList<SuccessModel> = ArrayList<SuccessModel>()
-        allSucess.add(d)
-        allSucess.add(de)
-        allSucess.add(r)
-        allSucess.add(e)
-        recyclerSuccessAdapter?.setSuccess(allSucess)
-        recyclerSuccessAdapter?.notifyDataSetChanged();
+
         // Inflate the layout for this fragment
         return root
     }
@@ -55,6 +55,43 @@ class SuccessListFragment : Fragment() {
         recyclerViewSuccess?.layoutManager = LinearLayoutManager (context);
         recyclerSuccessAdapter = SuccessAdapter();
         recyclerViewSuccess?.adapter = recyclerSuccessAdapter;
+    }
+
+    private fun getUserSuccess() {
+        val successService = NetworkProviderAPI.buildService(SuccessApiService::class.java)
+        val call = successService.getSuccess()
+
+        call.enqueue(object : Callback<List<DTOSuccess?>> {
+
+
+            override fun onResponse(call: Call<List<DTOSuccess?>>, response: Response<List<DTOSuccess?>>
+            ) {
+                val successListDTO : List<DTOSuccess?>? = response.body()
+                Log.d("SUCCESS", "onResponse: " + response.body())
+                var successListModel: MutableList<SuccessModel> = SuccessMapper.mapsuccessModelList(successListDTO) as MutableList<SuccessModel>
+                Log.d("GETSUCCESS", "onResponse: " + successListModel)
+
+                //var allSucess: MutableList<SuccessModel> = ArrayList<SuccessModel>()
+
+                recyclerSuccessAdapter?.setSuccess(successListModel)
+                recyclerSuccessAdapter?.notifyDataSetChanged();
+
+                //  val userAvatarBase64 = user?.picturePerso
+
+                //val succesAvatar = successAvatarBase64?.replace("data:image/png;base64,", "")
+
+
+
+                // val intent = Intent(this@LoginActivity, FirstConnexion::class.java)
+                //startActivity(intent)
+            }
+
+
+            override fun onFailure(call: Call<List<DTOSuccess?>>, t: Throwable) {
+                Log.d("GETSUCCESS", "onFailure: $t")
+            }
+
+        })
     }
 
     companion object {

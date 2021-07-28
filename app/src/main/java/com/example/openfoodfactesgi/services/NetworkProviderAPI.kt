@@ -17,7 +17,7 @@ object NetworkProviderAPI {
 
     init {
         retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:5000/")
+            .baseUrl("https://food-fact.herokuapp.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
